@@ -2,7 +2,7 @@ import streamlit as st
 import leafmap.foliumap as leafmap
 
 st.set_page_config(layout="wide")
-
+st.title("SIG - PIRACURUCA")
 with st.expander("See source code"):
     with st.echo():
 
@@ -23,6 +23,6 @@ with st.expander("See source code"):
 
 m.to_streamlit(height=700)
 
-st.title("SIG - PIRACURUCA")
+
 
 
