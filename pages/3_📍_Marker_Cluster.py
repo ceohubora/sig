@@ -18,7 +18,7 @@ st.title("SIG - PIRACURUCA")
 with st.expander("See source code"):
     with st.echo():
 
-        m = leafmap.Map(center=[-401.957474,-4.486756], zoom=10)
+        m = leafmap.Map(center=[-4.957474,-41.486756], zoom=10)
         cities = "https://raw.githubusercontent.com/giswqs/leafmap/master/examples/data/us_cities.csv"
         regions = "https://raw.githubusercontent.com/giswqs/leafmap/master/examples/data/us_regions.geojson"
 
