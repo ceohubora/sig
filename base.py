@@ -5,7 +5,7 @@ import json
 import folium
 
 st.set_page_config(layout="wide")
-st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
+st.title("SIG -  Piracuruca")
 
 # Coordenadas de Piracuruca
 map_center = [-3.930705, -41.711054]
