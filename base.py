@@ -9,7 +9,6 @@ st.title("SIG - Piracuruca")
 # Sidebar para selecionar o estado
 st.sidebar.header("Selecionar Estado")
 
-
 estados_br = {
     '11': 'Rondônia', '12': 'Acre', '13': 'Amazonas', '14': 'Roraima', '15': 'Pará',
     '16': 'Amapá', '17': 'Tocantins', '21': 'Maranhão', '22': 'Piauí', '23': 'Ceará',
