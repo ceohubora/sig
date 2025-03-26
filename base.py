@@ -1,10 +1,52 @@
 import streamlit as st
 import leafmap.foliumap as leafmap
-import geopandas as gpd
-import json
 
 st.set_page_config(layout="wide")
 st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
+
+# Coordenadas do ponto onde a imagem será adicionada
+latitude = -3.930705
+longitude = -41.711054
+map_center = [latitude, longitude]
+zoom_level = 15
+m = leafmap.Map(center=map_center, zoom=zoom_level)
+
+# Caminho para a imagem (assumindo que está na mesma pasta do script)
+image_path = "0101004038001_i04.jpg"
+
+# HTML para exibir a imagem
+image_html = f'<img src="{image_path}" style="width:100px;height:auto;">'
+
+# Adicionar um marcador com a imagem ao mapa
+m.marker([latitude, longitude], icon=leafmap.folium.Icon(icon="image", color="blue"), popup=image_html)
+
+m.to_streamlit(height=700)
+
+with st.expander("Ver código fonte"):
+    with st.echo():
+        import streamlit as st
+        import leafmap.foliumap as leafmap
+
+        st.set_page_config(layout="wide")
+        st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
+
+        # Coordenadas do ponto onde a imagem será adicionada
+        latitude = -3.930705
+        longitude = -41.711054
+        map_center = [latitude, longitude]
+        zoom_level = 15
+        m = leafmap.Map(center=map_center, zoom=zoom_level)
+
+        # Caminho para a imagem (assumindo que está na mesma pasta do script)
+        image_path = "0101004038001_i04.jpg"
+
+        # HTML para exibir a imagem
+        image_html = f'<img src="{image_path}" style="width:100px;height:auto;">'
+
+        # Adicionar um marcador com a imagem ao mapa
+        m.marker([latitude, longitude], icon=leafmap.folium.Icon(icon="image", color="blue"), popup=image_html)
+
+        m.to_streamlit(height=700)
 
 # Coordenadas de Piracuruca
 map_center = [-3.930705, -41.711054]
