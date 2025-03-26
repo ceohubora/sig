@@ -3,7 +3,7 @@ import leafmap.foliumap as leafmap
 import geopandas as gpd
 
 st.set_page_config(layout="wide")
-st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
+st.title("SIG - Piracuruca")
 
 # Sidebar para carregar os arquivos SHP
 st.sidebar.header("Carregar Arquivos SHP")
