@@ -3,9 +3,10 @@ import leafmap.foliumap as leafmap
 import geopandas as gpd
 import json
 import folium
+import pandas as pd
 
 st.set_page_config(layout="wide")
-st.title("SIG -  Piracuruca")
+st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
 
 # Coordenadas de Piracuruca
 map_center = [-3.930705, -41.711054]
@@ -49,6 +50,28 @@ image_path = "0101004038001_i04.jpg"
 image_html = f'<img src="{image_path}" style="width:100px;height:auto;">'
 folium.Marker([image_latitude, image_longitude], icon=folium.Icon(icon="image", color="blue"), popup=image_html).add_to(m)
 
+# Carregar e adicionar os pontos do arquivo CSV
+try:
+    csv_path = "2208304.csv"
+    df_csv = pd.read_csv(csv_path, sep=';')
+    st.success("Arquivo CSV carregado com sucesso!")
+
+    # Iterar pelas linhas do DataFrame e adicionar marcadores
+    for index, row in df_csv.iterrows():
+        latitude_csv = row['LATITUDE']
+        longitude_csv = row['LONGITUDE']
+        cod_especie = row['COD_ESPECIE']  # Você pode usar essa informação no popup ou ícone
+
+        popup_content = f"Código Espécie: {cod_especie}<br>Latitude: {latitude_csv}<br>Longitude: {longitude_csv}"
+        folium.Marker([latitude_csv, longitude_csv], popup=popup_content).add_to(m)
+
+except FileNotFoundError:
+    st.error(f"Erro: Arquivo CSV '{csv_path}' não encontrado na mesma pasta.")
+except pd.errors.EmptyDataError:
+    st.error(f"Erro: Arquivo CSV '{csv_path}' está vazio.")
+except pd.errors.ParserError:
+    st.error(f"Erro: Falha ao analisar o arquivo CSV '{csv_path}'. Verifique o separador.")
+
 m.to_streamlit(height=700)
 
 with st.expander("Ver código fonte"):
@@ -58,6 +81,7 @@ with st.expander("Ver código fonte"):
         import geopandas as gpd
         import json
         import folium
+        import pandas as pd
 
         st.set_page_config(layout="wide")
         st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
@@ -103,5 +127,27 @@ with st.expander("Ver código fonte"):
         image_path = "0101004038001_i04.jpg"
         image_html = f'<img src="{image_path}" style="width:100px;height:auto;">'
         folium.Marker([image_latitude, image_longitude], icon=folium.Icon(icon="image", color="blue"), popup=image_html).add_to(m)
+
+        # Carregar e adicionar os pontos do arquivo CSV
+        try:
+            csv_path = "2208304.csv"
+            df_csv = pd.read_csv(csv_path, sep=';')
+            st.success("Arquivo CSV carregado com sucesso!")
+
+            # Iterar pelas linhas do DataFrame e adicionar marcadores
+            for index, row in df_csv.iterrows():
+                latitude_csv = row['LATITUDE']
+                longitude_csv = row['LONGITUDE']
+                cod_especie = row['COD_ESPECIE']  # Você pode usar essa informação no popup ou ícone
+
+                popup_content = f"Código Espécie: {cod_especie}<br>Latitude: {latitude_csv}<br>Longitude: {longitude_csv}"
+                folium.Marker([latitude_csv, longitude_csv], popup=popup_content).add_to(m)
+
+        except FileNotFoundError:
+            st.error(f"Erro: Arquivo CSV '{csv_path}' não encontrado na mesma pasta.")
+        except pd.errors.EmptyDataError:
+            st.error(f"Erro: Arquivo CSV '{csv_path}' está vazio.")
+        except pd.errors.ParserError:
+            st.error(f"Erro: Falha ao analisar o arquivo CSV '{csv_path}'. Verifique o separador.")
 
         m.to_streamlit(height=700)
