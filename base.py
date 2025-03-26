@@ -2,9 +2,44 @@ import streamlit as st
 import leafmap.foliumap as leafmap
 import geopandas as gpd
 import requests
+import json
 
 st.set_page_config(layout="wide")
-st.title("SIG - Piracuruca")
+st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
+
+# ... (seu código anterior) ...
+
+# Carregar o arquivo JSON das faces de logradouros
+try:
+    with open("2208304_faces_de_logradouros_2022.json", 'r') as f:
+        faces_logradouros_json = json.load(f)
+    st.success("Arquivo JSON das faces de logradouros carregado com sucesso!")
+except FileNotFoundError:
+    st.error("Erro: Arquivo 2208304_faces_de_logradouros_2022.json não encontrado na mesma pasta.")
+    faces_logradouros_json = None
+except json.JSONDecodeError:
+    st.error("Erro: Falha ao decodificar o arquivo JSON.")
+    faces_logradouros_json = None
+
+if faces_logradouros_json:
+    # Agora você pode trabalhar com o dicionário 'faces_logradouros_json'
+    st.write("Conteúdo do arquivo JSON:")
+    st.write(faces_logradouros_json)
+
+    # Exemplo de como converter para GeoDataFrame (se for um GeoJSON)
+    if faces_logradouros_json.get('type') == 'FeatureCollection':
+        try:
+            faces_gdf = gpd.GeoDataFrame.from_features(
+                faces_logradouros_json['features'],
+                crs=faces_logradouros_json.get('crs', 'EPSG:4326')  # Adicione um CRS padrão se não estiver presente
+            )
+            st.success("Dados das faces de logradouros convertidos para GeoDataFrame!")
+            # Agora você pode adicionar esse GeoDataFrame ao seu mapa
+            # m.add_gdf(faces_gdf, layer_name="Faces de Logradouros", style={'color': 'purple'})
+        except Exception as e:
+            st.error(f"Erro ao converter JSON para GeoDataFrame: {e}")
+
+# ... (o restante do seu código) ...
 
 # Sidebar para selecionar o estado
 st.sidebar.header("Selecionar Estado")
