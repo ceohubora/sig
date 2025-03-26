@@ -21,10 +21,10 @@ with st.expander("See source code"):
         m = leafmap.Map(center=[40, -100], zoom=4)
         m.add_heatmap(
             filepath,
-            latitude="latitude",
-            longitude="longitude",
-            value="pop_max",
-            name="Heat map",
+            latitude="LATITUDE",
+            longitude="LONGITUDE",
+            value="COD_ESPECIE",
+            name="NV_GEO_COORD",
             radius=20,
         )
 m.to_streamlit(height=700)
