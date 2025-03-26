@@ -4,7 +4,7 @@ import geopandas as gpd
 import requests
 
 st.set_page_config(layout="wide")
-st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
+st.title("SIG - Piracuruca")
 
 # Sidebar para selecionar o estado
 st.sidebar.header("Selecionar Estado")
