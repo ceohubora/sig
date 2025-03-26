@@ -37,7 +37,7 @@ if faces_logradouros_json:
             )
             st.success("Dados das faces de logradouros convertidos para GeoDataFrame!")
             # Agora você pode adicionar esse GeoDataFrame ao seu mapa
-            # m.add_gdf(faces_gdf, layer_name="Faces de Logradouros", style={'color': 'purple'})
+            m.add_gdf(faces_gdf, layer_name="Faces de Logradouros", style={'color': 'purple'})
         except Exception as e:
             st.error(f"Erro ao converter JSON para GeoDataFrame: {e}")
 
@@ -84,7 +84,7 @@ with st.expander("Ver código fonte"):
                     )
                     st.success("Dados das faces de logradouros convertidos para GeoDataFrame!")
                     # Agora você pode adicionar esse GeoDataFrame ao seu mapa
-                    # m.add_gdf(faces_gdf, layer_name="Faces de Logradouros", style={'color': 'purple'})
+                    m.add_gdf(faces_gdf, layer_name="Faces de Logradouros", style={'color': 'purple'})
                 except Exception as e:
                     st.error(f"Erro ao converter JSON para GeoDataFrame: {e}")
 
