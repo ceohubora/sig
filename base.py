@@ -31,7 +31,7 @@ ruas_gdf = load_shp(ruas_file)
 lotes_gdf = load_shp(lotes_file)
 
 # Centralizar o mapa em Piracuruca
-map_center = [-41.710625,-3.92561]
+map_center = [-3.92561,-41.710625]
 zoom_level = 13
 m = leafmap.Map(center=map_center, zoom=zoom_level)
 
