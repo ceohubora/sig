@@ -7,7 +7,8 @@ with st.expander("See source code"):
     with st.echo():
 
         m = leafmap.Map(center=[-4.957474,-41.486756], zoom=10)
-        cities = "https://raw.githubusercontent.com/giswqs/leafmap/master/examples/data/us_cities.csv"
+        cities = https://github.com/ceohubora/sig/blob/main/2208304.csv
+        #"https://raw.githubusercontent.com/giswqs/leafmap/master/examples/data/us_cities.csv"
         regions = "https://raw.githubusercontent.com/giswqs/leafmap/master/examples/data/us_regions.geojson"
 
         m.add_geojson(regions, layer_name="US Regions")
