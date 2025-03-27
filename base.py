@@ -7,9 +7,9 @@ import os
 st.set_page_config(layout="wide")
 st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
 
-# Coordenadas do ponto onde as imagens estarão associadas
-image_latitude = -3.930705
-image_longitude = -41.711054
+# Coordenadas do ponto onde as imagens estarão associadas (novo ponto)
+image_latitude = -3.931664
+image_longitude = -41.708930
 map_center = [image_latitude, image_longitude]
 zoom_level = 15
 m = leafmap.Map(center=map_center, zoom=zoom_level)
@@ -56,9 +56,9 @@ with st.expander("Ver código fonte"):
         st.set_page_config(layout="wide")
         st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
 
-        # Coordenadas do ponto onde as imagens estarão associadas
-        image_latitude = -3.930705
-        image_longitude = -41.711054
+        # Coordenadas do ponto onde as imagens estarão associadas (novo ponto)
+        image_latitude = -3.931664
+        image_longitude = -41.708930
         map_center = [image_latitude, image_longitude]
         zoom_level = 15
         m = leafmap.Map(center=map_center, zoom=zoom_level)
