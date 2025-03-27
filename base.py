@@ -15,15 +15,15 @@ m = leafmap.Map(center=map_center, zoom=zoom_level)
 # Caminho para o arquivo PDF (assumindo que está na mesma pasta do script)
 pdf_path = "010103025006401.pdf"
 
-# HTML para o popup com um link para o PDF
-pdf_popup_html = f'<a href="{pdf_path}" target="_blank">Visualizar PDF</a>'
+# HTML para o popup com um link para o PDF (com atributo download)
+pdf_popup_html = f'<a href="{pdf_path}" download="documento.pdf">Baixar PDF</a>'
 
 # Adicionar um marcador com o popup que contém o link para o PDF
 folium.Marker(
     [pdf_latitude, pdf_longitude],
     icon=folium.Icon(icon="file", color="green"),
     popup=pdf_popup_html,
-    tooltip="Clique para ver o PDF"  # Texto que aparece ao passar o mouse sobre o marcador
+    tooltip="Clique para baixar o PDF"  # Texto que aparece ao passar o mouse sobre o marcador
 ).add_to(m)
 
 m.to_streamlit(height=700)
@@ -47,15 +47,15 @@ with st.expander("Ver código fonte"):
         # Caminho para o arquivo PDF (assumindo que está na mesma pasta do script)
         pdf_path = "010103025006401.pdf"
 
-        # HTML para o popup com um link para o PDF
-        pdf_popup_html = f'<a href="{pdf_path}" target="_blank">Visualizar PDF</a>'
+        # HTML para o popup com um link para o PDF (com atributo download)
+        pdf_popup_html = f'<a href="{pdf_path}" download="documento.pdf">Baixar PDF</a>'
 
         # Adicionar um marcador com o popup que contém o link para o PDF
         folium.Marker(
             [pdf_latitude, pdf_longitude],
             icon=folium.Icon(icon="file", color="green"),
             popup=pdf_popup_html,
-            tooltip="Clique para ver o PDF"  # Texto que aparece ao passar o mouse sobre o marcador
+            tooltip="Clique para baixar o PDF"  # Texto que aparece ao passar o mouse sobre o marcador
         ).add_to(m)
 
         m.to_streamlit(height=700)
