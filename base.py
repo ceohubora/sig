@@ -14,7 +14,7 @@ zoom_level = 15
 m = leafmap.Map(center=map_center, zoom=zoom_level)
 
 # Caminho para o arquivo PDF (assumindo que está na mesma pasta do script)
-pdf_filename = "010103025006401.pdf"
+pdf_filename = "https://github.com/ceohubora/sig/blob/main/010103025006401.pdf"
 pdf_path = pdf_filename
 
 # Verificar se o arquivo existe
@@ -53,7 +53,7 @@ with st.expander("Ver código fonte"):
         m = leafmap.Map(center=map_center, zoom=zoom_level)
 
         # Caminho para o arquivo PDF (assumindo que está na mesma pasta do script)
-        pdf_filename = "010103025006401.pdf"
+        pdf_filename = "https://github.com/ceohubora/sig/blob/main/010103025006401.pdf"
         pdf_path = pdf_filename
 
         # Verificar se o arquivo existe
