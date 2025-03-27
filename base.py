@@ -7,37 +7,41 @@ import os
 st.set_page_config(layout="wide")
 st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
 
-# Coordenadas do ponto onde o PDF estará associado
-pdf_latitude = -3.930705
-pdf_longitude = -41.711054
-map_center = [pdf_latitude, pdf_longitude]
+# Coordenadas do ponto onde as imagens estarão associadas
+image_latitude = -3.930705
+image_longitude = -41.711054
+map_center = [image_latitude, image_longitude]
 zoom_level = 15
 m = leafmap.Map(center=map_center, zoom=zoom_level)
 
-# Nome do arquivo PDF
-pdf_filename = "010103025006401.pdf"
-pdf_path = pdf_filename
+# Caminhos para as imagens (assumindo que estão na mesma pasta do script)
+image1_path = "010103025006401.jpg"
+image2_path = "0101004038001_i04.jpg"
 
-# Verificar se o arquivo existe e exibir o caminho
-if os.path.exists(pdf_path):
-    st.success(f"Arquivo PDF encontrado em: {os.path.abspath(pdf_path)}")
-    # HTML para o popup com um link para o PDF (com atributo download)
-    pdf_popup_html = f'<a href="{pdf_path}" download="{pdf_filename}">Baixar PDF</a>'
-    st.info(f"HTML do popup: {pdf_popup_html}") # Exibir o HTML gerado
+# Verificar se os arquivos existem
+if os.path.exists(image1_path) and os.path.exists(image2_path):
+    st.success("Arquivos de imagem encontrados!")
+    # HTML para o popup com as duas imagens
+    image_popup_html = f"""
+    <div style="display: flex; flex-direction: row; justify-content: space-around;">
+        <img src="{image1_path}" style="width:150px;height:auto;">
+        <img src="{image2_path}" style="width:150px;height:auto;">
+    </div>
+    """
 
-    # Adicionar um marcador com o popup que contém o link para o PDF
+    # Adicionar um marcador com o popup que contém as imagens
     folium.Marker(
-        [pdf_latitude, pdf_longitude],
-        icon=folium.Icon(icon="file", color="green"),
-        popup=pdf_popup_html,
-        tooltip="Clique para baixar o PDF"  # Texto que aparece ao passar o mouse sobre o marcador
+        [image_latitude, image_longitude],
+        icon=folium.Icon(icon="image", color="blue"),
+        popup=image_popup_html,
+        tooltip="Clique para ver as imagens"  # Texto que aparece ao passar o mouse sobre o marcador
     ).add_to(m)
 else:
-    st.error(f"Erro: Arquivo PDF '{pdf_path}' não encontrado na mesma pasta.")
+    if not os.path.exists(image1_path):
+        st.error(f"Erro: Arquivo de imagem '{image1_path}' não encontrado na mesma pasta.")
+    if not os.path.exists(image2_path):
+        st.error(f"Erro: Arquivo de imagem '{image2_path}' não encontrado na mesma pasta.")
     st.info(f"Pasta atual do script: {os.getcwd()}") # Adicionado para debug
-
-# Teste de download direto fora do mapa
-st.markdown(f'<a href="{pdf_path}" download="teste_download.pdf">Teste de Download Direto</a>', unsafe_allow_html=True)
 
 m.to_streamlit(height=700)
 
@@ -48,40 +52,44 @@ with st.expander("Ver código fonte"):
         import folium
         import os
 
-        # Remova a chamada duplicada de st.set_page_config aqui
-        # st.set_page_config(layout="wide")
-        # st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
+        # Mova st.set_page_config para o início do script
+        st.set_page_config(layout="wide")
+        st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
 
-        # Coordenadas do ponto onde o PDF estará associado
-        pdf_latitude = -3.930705
-        pdf_longitude = -41.711054
-        map_center = [pdf_latitude, pdf_longitude]
+        # Coordenadas do ponto onde as imagens estarão associadas
+        image_latitude = -3.930705
+        image_longitude = -41.711054
+        map_center = [image_latitude, image_longitude]
         zoom_level = 15
         m = leafmap.Map(center=map_center, zoom=zoom_level)
 
-        # Nome do arquivo PDF
-        pdf_filename = "010103025006401.pdf"
-        pdf_path = pdf_filename
+        # Caminhos para as imagens (assumindo que estão na mesma pasta do script)
+        image1_path = "010103025006401.jpg"
+        image2_path = "0101004038001_i04.jpg"
 
-        # Verificar se o arquivo existe e exibir o caminho
-        if os.path.exists(pdf_path):
-            st.success(f"Arquivo PDF encontrado em: {os.path.abspath(pdf_path)}")
-            # HTML para o popup com um link para o PDF (com atributo download)
-            pdf_popup_html = f'<a href="{pdf_path}" download="{pdf_filename}">Baixar PDF</a>'
-            st.info(f"HTML do popup: {pdf_popup_html}") # Exibir o HTML gerado
+        # Verificar se os arquivos existem
+        if os.path.exists(image1_path) and os.path.exists(image2_path):
+            st.success("Arquivos de imagem encontrados!")
+            # HTML para o popup com as duas imagens
+            image_popup_html = f"""
+            <div style="display: flex; flex-direction: row; justify-content: space-around;">
+                <img src="{image1_path}" style="width:150px;height:auto;">
+                <img src="{image2_path}" style="width:150px;height:auto;">
+            </div>
+            """
 
-            # Adicionar um marcador com o popup que contém o link para o PDF
+            # Adicionar um marcador com o popup que contém as imagens
             folium.Marker(
-                [pdf_latitude, pdf_longitude],
-                icon=folium.Icon(icon="file", color="green"),
-                popup=pdf_popup_html,
-                tooltip="Clique para baixar o PDF"  # Texto que aparece ao passar o mouse sobre o marcador
+                [image_latitude, image_longitude],
+                icon=folium.Icon(icon="image", color="blue"),
+                popup=image_popup_html,
+                tooltip="Clique para ver as imagens"  # Texto que aparece ao passar o mouse sobre o marcador
             ).add_to(m)
         else:
-            st.error(f"Erro: Arquivo PDF '{pdf_path}' não encontrado na mesma pasta.")
+            if not os.path.exists(image1_path):
+                st.error(f"Erro: Arquivo de imagem '{image1_path}' não encontrado na mesma pasta.")
+            if not os.path.exists(image2_path):
+                st.error(f"Erro: Arquivo de imagem '{image2_path}' não encontrado na mesma pasta.")
             st.info(f"Pasta atual do script: {os.getcwd()}") # Adicionado para debug
-
-        # Teste de download direto fora do mapa
-        st.markdown(f'<a href="{pdf_path}" download="teste_download.pdf">Teste de Download Direto</a>', unsafe_allow_html=True)
 
         m.to_streamlit(height=700)
