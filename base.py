@@ -1,7 +1,7 @@
 import streamlit as st
 import leafmap.foliumap as leafmap
 import folium
-import os  # Importe a biblioteca os para verificar o caminho
+import os
 
 st.set_page_config(layout="wide")
 st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
@@ -13,13 +13,13 @@ map_center = [pdf_latitude, pdf_longitude]
 zoom_level = 15
 m = leafmap.Map(center=map_center, zoom=zoom_level)
 
-# Caminho para o arquivo PDF (assumindo que está na mesma pasta do script)
-pdf_filename = "https://github.com/ceohubora/sig/blob/main/010103025006401.pdf"
+# Nome do arquivo PDF
+pdf_filename = "010103025006401.pdf"
 pdf_path = pdf_filename
 
-# Verificar se o arquivo existe
+# Verificar se o arquivo existe e exibir o caminho
 if os.path.exists(pdf_path):
-    st.success(f"Arquivo PDF encontrado em: {pdf_path}")
+    st.success(f"Arquivo PDF encontrado em: {os.path.abspath(pdf_path)}")
     # HTML para o popup com um link para o PDF (com atributo download)
     pdf_popup_html = f'<a href="{pdf_path}" download="{pdf_filename}">Baixar PDF</a>'
 
@@ -32,6 +32,7 @@ if os.path.exists(pdf_path):
     ).add_to(m)
 else:
     st.error(f"Erro: Arquivo PDF '{pdf_path}' não encontrado na mesma pasta.")
+    st.info(f"Pasta atual do script: {os.getcwd()}") # Adicionado para debug
 
 m.to_streamlit(height=700)
 
@@ -52,13 +53,13 @@ with st.expander("Ver código fonte"):
         zoom_level = 15
         m = leafmap.Map(center=map_center, zoom=zoom_level)
 
-        # Caminho para o arquivo PDF (assumindo que está na mesma pasta do script)
-        pdf_filename = "https://github.com/ceohubora/sig/blob/main/010103025006401.pdf"
+        # Nome do arquivo PDF
+        pdf_filename = "010103025006401.pdf"
         pdf_path = pdf_filename
 
-        # Verificar se o arquivo existe
+        # Verificar se o arquivo existe e exibir o caminho
         if os.path.exists(pdf_path):
-            st.success(f"Arquivo PDF encontrado em: {pdf_path}")
+            st.success(f"Arquivo PDF encontrado em: {os.path.abspath(pdf_path)}")
             # HTML para o popup com um link para o PDF (com atributo download)
             pdf_popup_html = f'<a href="{pdf_path}" download="{pdf_filename}">Baixar PDF</a>'
 
@@ -71,5 +72,6 @@ with st.expander("Ver código fonte"):
             ).add_to(m)
         else:
             st.error(f"Erro: Arquivo PDF '{pdf_path}' não encontrado na mesma pasta.")
+            st.info(f"Pasta atual do script: {os.getcwd()}") # Adicionado para debug
 
         m.to_streamlit(height=700)
