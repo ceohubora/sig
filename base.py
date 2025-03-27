@@ -22,6 +22,7 @@ if os.path.exists(pdf_path):
     st.success(f"Arquivo PDF encontrado em: {os.path.abspath(pdf_path)}")
     # HTML para o popup com um link para o PDF (com atributo download)
     pdf_popup_html = f'<a href="{pdf_path}" download="{pdf_filename}">Baixar PDF</a>'
+    st.info(f"HTML do popup: {pdf_popup_html}") # Exibir o HTML gerado
 
     # Adicionar um marcador com o popup que contém o link para o PDF
     folium.Marker(
@@ -33,6 +34,9 @@ if os.path.exists(pdf_path):
 else:
     st.error(f"Erro: Arquivo PDF '{pdf_path}' não encontrado na mesma pasta.")
     st.info(f"Pasta atual do script: {os.getcwd()}") # Adicionado para debug
+
+# Teste de download direto fora do mapa
+st.markdown(f'<a href="{pdf_path}" download="teste_download.pdf">Teste de Download Direto</a>', unsafe_allow_html=True)
 
 m.to_streamlit(height=700)
 
@@ -62,6 +66,7 @@ with st.expander("Ver código fonte"):
             st.success(f"Arquivo PDF encontrado em: {os.path.abspath(pdf_path)}")
             # HTML para o popup com um link para o PDF (com atributo download)
             pdf_popup_html = f'<a href="{pdf_path}" download="{pdf_filename}">Baixar PDF</a>'
+            st.info(f"HTML do popup: {pdf_popup_html}") # Exibir o HTML gerado
 
             # Adicionar um marcador com o popup que contém o link para o PDF
             folium.Marker(
@@ -73,5 +78,8 @@ with st.expander("Ver código fonte"):
         else:
             st.error(f"Erro: Arquivo PDF '{pdf_path}' não encontrado na mesma pasta.")
             st.info(f"Pasta atual do script: {os.getcwd()}") # Adicionado para debug
+
+        # Teste de download direto fora do mapa
+        st.markdown(f'<a href="{pdf_path}" download="teste_download.pdf">Teste de Download Direto</a>', unsafe_allow_html=True)
 
         m.to_streamlit(height=700)
