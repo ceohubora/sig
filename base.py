@@ -3,7 +3,6 @@ import leafmap.foliumap as leafmap
 import folium
 import os
 
-# Mova st.set_page_config para o início do script
 st.set_page_config(layout="wide")
 st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
 
@@ -14,9 +13,9 @@ map_center = [image_latitude, image_longitude]
 zoom_level = 15
 m = leafmap.Map(center=map_center, zoom=zoom_level)
 
-# Caminhos para as imagens (assumindo que estão na mesma pasta do script)
-image1_path = "010103025006401.jpg"
-image2_path = "0101004038001_i04.jpg"
+# Caminhos para as imagens (assumindo que estão na subpasta "imagens")
+image1_path = "imagens/010103025006401.jpg"
+image2_path = "imagens/0101004038001_i04.jpg"
 
 # Verificar se os arquivos existem
 if os.path.exists(image1_path) and os.path.exists(image2_path):
@@ -38,9 +37,9 @@ if os.path.exists(image1_path) and os.path.exists(image2_path):
     ).add_to(m)
 else:
     if not os.path.exists(image1_path):
-        st.error(f"Erro: Arquivo de imagem '{image1_path}' não encontrado na mesma pasta.")
+        st.error(f"Erro: Arquivo de imagem '{image1_path}' não encontrado.")
     if not os.path.exists(image2_path):
-        st.error(f"Erro: Arquivo de imagem '{image2_path}' não encontrado na mesma pasta.")
+        st.error(f"Erro: Arquivo de imagem '{image2_path}' não encontrado.")
     st.info(f"Pasta atual do script: {os.getcwd()}") # Adicionado para debug
 
 m.to_streamlit(height=700)
@@ -52,7 +51,6 @@ with st.expander("Ver código fonte"):
         import folium
         import os
 
-        # Mova st.set_page_config para o início do script
         st.set_page_config(layout="wide")
         st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
 
@@ -63,9 +61,9 @@ with st.expander("Ver código fonte"):
         zoom_level = 15
         m = leafmap.Map(center=map_center, zoom=zoom_level)
 
-        # Caminhos para as imagens (assumindo que estão na mesma pasta do script)
-        image1_path = "010103025006401.jpg"
-        image2_path = "0101004038001_i04.jpg"
+        # Caminhos para as imagens (assumindo que estão na subpasta "imagens")
+        image1_path = "imagens/010103025006401.jpg"
+        image2_path = "imagens/0101004038001_i04.jpg"
 
         # Verificar se os arquivos existem
         if os.path.exists(image1_path) and os.path.exists(image2_path):
@@ -87,9 +85,9 @@ with st.expander("Ver código fonte"):
             ).add_to(m)
         else:
             if not os.path.exists(image1_path):
-                st.error(f"Erro: Arquivo de imagem '{image1_path}' não encontrado na mesma pasta.")
+                st.error(f"Erro: Arquivo de imagem '{image1_path}' não encontrado.")
             if not os.path.exists(image2_path):
-                st.error(f"Erro: Arquivo de imagem '{image2_path}' não encontrado na mesma pasta.")
+                st.error(f"Erro: Arquivo de imagem '{image2_path}' não encontrado.")
             st.info(f"Pasta atual do script: {os.getcwd()}") # Adicionado para debug
 
         m.to_streamlit(height=700)
