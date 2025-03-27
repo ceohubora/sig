@@ -3,6 +3,7 @@ import leafmap.foliumap as leafmap
 import folium
 import os
 
+# Mova st.set_page_config para o início do script
 st.set_page_config(layout="wide")
 st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
 
@@ -47,8 +48,9 @@ with st.expander("Ver código fonte"):
         import folium
         import os
 
-        st.set_page_config(layout="wide")
-        st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
+        # Remova a chamada duplicada de st.set_page_config aqui
+        # st.set_page_config(layout="wide")
+        # st.title("SIG - Cadastro Técnico Municipal de Piracuruca")
 
         # Coordenadas do ponto onde o PDF estará associado
         pdf_latitude = -3.930705
